@@ -27,7 +27,7 @@ const transErrors = {
   account_not_active:
     "Email đã đăng ký nhưng chưa được Active tài khoản, vui lòng kiểm tra email hoặc liên hệ với bộ phần hỗ  trợ của chúng tôi.",
   account_undefined: "Tài khoản này không tồn tại.",
-  token_undefine: "Token không tồn tại!",
+  token_undefined: "Token không tồn tại!",
   login_failed: "Sai tài khoản hoặc mật khẩu!",
   server_error:
     "Có lỗi phía server, liên hệ với bộ phận hỗ  trợ để báo cáo lỗi này, xin cảm ơn.",
@@ -37,10 +37,18 @@ const transSuccess = {
   userCreated: (userEmail) => {
     return `Tài khoản <strong>${userEmail} đã được tạo, kiểm tra email Active tài khoản trước khi đăng nhập, cảm ơn</strong>`;
   },
+  account_actived:
+    "Kích hoạt tài khoản thành công, bạn đã có thể đăng nhập ứng dụng.",
+};
+
+const transMail = {
+  send_failed:
+    "Có lỗi trong quá trình gửi email, vui lòng liên hệ với bộ phận hỗ  trợ của chúng tôi.",
 };
 
 module.exports = {
   transValidation,
   transErrors,
   transSuccess,
+  transMail,
 };

@@ -10,6 +10,8 @@ let initWebRoutes = (app) => {
   });
 
   router.post("/register", authValid.register, authController.register);
+  router.post("/verify-email", authController.verifyAccount);
+  router.post("/verify-account", authController.verifyAccount);
 
   return app.use("/", router);
 };
