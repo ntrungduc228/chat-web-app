@@ -36,4 +36,29 @@ let UserSchema = new Schema(
   { timestamps: true }
 );
 
+UserSchema.statics = {
+  createNew(item) {
+    return this.create(item);
+  },
+
+  findByEmail(email) {
+    return this.findOne({ "local.email": email }).exec();
+  },
+
+  removeById(id) {
+    return this.findByIdAndRemove(id).exec();
+  },
+
+  findByToken(token) {
+    return this.findOne({ "local.verifyToken": token }).exec();
+  },
+
+  verify(token) {
+    return this.findOneAndUpdate(
+      { "local.verifyToken": token },
+      { "local.isActive": true, "local.verifyToken": null }
+    ).exec();
+  },
+};
+
 module.exports = mongoose.model("User", UserSchema);
