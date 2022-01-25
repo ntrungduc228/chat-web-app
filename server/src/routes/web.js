@@ -14,6 +14,16 @@ let initWebRoutes = (app) => {
   router.post("/register", authValid.register, authController.register);
   router.post("/verify-account", authController.verifyAccount);
   router.post("/login", authValid.login, authController.login);
+  router.post(
+    "/send-password-reset-link",
+    authValid.sendPasswordReset,
+    authController.sendPasswordResetLink
+  );
+  router.post(
+    "/reset-password",
+    authValid.resetPassword,
+    authController.resetPassword
+  );
 
   router.get("/check", authMiddleware.checkLoggedIn);
   router.get("/checktime", (req, res) => {

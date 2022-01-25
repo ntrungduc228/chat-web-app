@@ -65,4 +65,50 @@ let sendMailVerifyAccount = (data) => {
   });
 };
 
-module.exports = { sendMailVerify, sendMailVerifyAccount };
+let sendPasswordResetLink = (data) => {
+  return new Promise(async (resolve, reject) => {
+    const email = new Email({
+      views: {
+        root: __dirname + "/emails",
+        options: {
+          extension: "ejs", // <---- HERE
+        },
+      },
+      message: {
+        from: "Chitchat chitchat.support@gmail.com",
+      },
+      preview: false,
+      // uncomment below to send emails in development/test env:
+      // send: true
+      transport: transporter,
+    });
+
+    email
+      .send({
+        template: "passwordReset",
+        message: {
+          to: data.receiverEmail,
+        },
+        locals: {
+          productName: data.productName,
+          receiverEmail: data.receiverEmail,
+          linkResetPassword: data.linkResetPassword,
+        },
+      })
+      .then(async (res) => {
+        // console.log("res.originalMessage", res.originalMessage);
+        await transporter.sendMail(res.originalMessage);
+        return resolve(true);
+      })
+      .catch((err) => {
+        console.log("error sending password reset email", err);
+        reject(err);
+      });
+  });
+};
+
+module.exports = {
+  sendMailVerify,
+  sendMailVerifyAccount,
+  sendPasswordResetLink,
+};
