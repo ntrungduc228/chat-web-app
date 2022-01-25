@@ -21,6 +21,7 @@ const transValidation = {
 };
 
 const transErrors = {
+  account_login_incorrect: "Tài khoản hoặc mật khẩu không chính xác",
   account_in_use: "User này đã được sử dụng",
   account_removed:
     "Tài khoản này đã bị dỡ khỏi hệ thống, nếu cho rằng đây là hiêu lầm, vui lòng liên hệ với bộ phần hỗ  trợ của chúng tôi.",
@@ -39,6 +40,9 @@ const transSuccess = {
   },
   account_actived:
     "Kích hoạt tài khoản thành công, bạn đã có thể đăng nhập ứng dụng.",
+  loginSuccess: (username) => {
+    return `Xin chào ${username}, chúc bạn một ngày tốt lành.`;
+  },
 };
 
 const transMail = {

@@ -1,5 +1,5 @@
 const { check } = require("express-validator");
-const { transValidation } = require("../../lang/vi");
+const { transValidation, transErrors } = require("../../lang/vi");
 
 let register = [
   check("email", transValidation.email_incorrect).isEmail().trim(),
@@ -13,6 +13,14 @@ let register = [
   ).custom((value, { req }) => value === req.body.password),
 ];
 
+let login = [
+  check("email", transErrors.account_login_incorrect).isEmail().trim(),
+  check("password", transErrors.account_login_incorrect).isLength({
+    min: 6,
+  }),
+];
+
 module.exports = {
   register,
+  login,
 };
