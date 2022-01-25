@@ -22,6 +22,7 @@ const transValidation = {
 
 const transErrors = {
   account_login_incorrect: "Tài khoản hoặc mật khẩu không chính xác",
+  email_not_found: "Không tìm thấy email, vui lòng kiểm tra lại thông tin",
   account_in_use: "User này đã được sử dụng",
   account_removed:
     "Tài khoản này đã bị dỡ khỏi hệ thống, nếu cho rằng đây là hiêu lầm, vui lòng liên hệ với bộ phần hỗ  trợ của chúng tôi.",
@@ -43,11 +44,14 @@ const transSuccess = {
   loginSuccess: (username) => {
     return `Xin chào ${username}, chúc bạn một ngày tốt lành.`;
   },
+  send_reset_password_success:
+    "Gửi mail reset mật khẩu thành công, vui lòng kiểm tra mail",
+  user_password_updated: "Cập nhật mật khẩu thành công.",
 };
 
 const transMail = {
   send_failed:
-    "Có lỗi trong quá trình gửi email, vui lòng liên hệ với bộ phận hỗ  trợ của chúng tôi.",
+    "Có lỗi trong quá trình gửi email, vui lòng liên hệ với bộ phận hỗ trợ của chúng tôi.",
 };
 
 module.exports = {

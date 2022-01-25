@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <!-- Font Family -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html {
+            font-family: 'Roboto', sans-serif;
+            box-sizing: border-box;
+        }
+
+        p {
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .reset-pw-container {
+            width: 600px;
+            margin: 2rem auto;
+        }
+
+        .reset-pw-header {
+            margin: 1rem 0;
+        }
+
+        .reset-pw-header h2 {
+            font-weight: 400;
+        }
+
+        .reset-pw-logo {
+            width: 30px;
+            height: 60px;
+            /* background-image: url("/img/logo/logo.png"); */
+            background-image: url("https://themes.pixelstrap.com/chitchat/assets/images/logo/logo.png");
+            background-position: center center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .reset-pw-body {
+            border: 1px solid #d3d1d1;
+            border-radius: 3px;
+            padding: 1rem;
+        }
+
+        .reset-pw-body-title {
+            font-weight: 500;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .text {
+            margin: 1rem 0;
+        }
+
+        .reset-btn {
+            width: 100%;
+            text-align: center;
+
+        }
+
+        .btn-reset-pw {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #0074d9;
+            border-radius: 3px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .reset-pw-footer {
+            color: #706f6f;
+            text-align: center;
+        }
+
+        .reset-pw-footer p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reset-pw-container">
+        <div class="reset-pw-header">
+            <div class="reset-pw-logo"></div>
+            <h2>Reset your <%= productName %> password</h2>
+        </div>
+        <div class="reset-pw-body">
+            <p class="reset-pw-body-title"> <%= productName %> password reset</p>
+            <p class="text">We heard that you lost your <%= productName %> password. Sorry about that!</p>
+            <p class="text">But don’t worry! You can use the following button to reset your password:</p>
+            <div class="reset-btn">
+                <a href="<%= linkResetPassword %>" target="_blank" class="btn-reset-pw">Reset your Password</a>
+            </div>
+
+            <p class="text" style="line-height: 1.4rem;"> If you don’t use this link within 3 hours, it will expire. To
+                get a new password reset
+                link, visit:
+                <a href="https://github.com/password_reset">https://github.com/password_reset</a></p>
+            <p class="text">Thanks,</p>
+
+        </div>
+        <div class="reset-pw-footer">
+            <p>You're receiving this email because a password reset was requested for your account.</p>
+        </div>
+    </div>
+</body>
+
+</html>

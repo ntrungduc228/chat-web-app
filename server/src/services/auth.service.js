@@ -1,10 +1,12 @@
 const UserModel = require("../models/user.model");
 const RefreshTokenModel = require("../models/refreshToken.model");
+const PasswordResetTokenModel = require("../models/passwordReset.model");
 const bcrypt = require("bcryptjs");
 const { v4: uuidv4 } = require("uuid");
 const { transErrors, transSuccess, transMail } = require("../../lang/vi");
 const emailService = require("../services/email.service");
 const jwtHelper = require("../helpers/jwt");
+const moment = require("moment");
 
 let salt = bcrypt.genSaltSync(10);
 const accessTokenLife = process.env.ACCESS_TOKEN_LIFE;
@@ -216,4 +218,82 @@ let verifyRFToken = async (refreshTokenFromClient) => {
   }
 };
 
-module.exports = { register, verifyAccount, login, verifyRFToken };
+let sendPasswordResetLink = async (user, protocol, host) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let passwordResetObj = await PasswordResetTokenModel.generate(user);
+
+      let linkResetPassword = `${protocol}://${host}/password-reset?resetToken=${passwordResetObj.resetToken}&email=${passwordResetObj.userEmail}`;
+
+      emailService
+        .sendPasswordResetLink({
+          productName: "Chitchat",
+          receiverEmail: user.local.email,
+          linkResetPassword: linkResetPassword,
+        })
+        .then((success) => {
+          // console.log("sucess", success);
+          return resolve({
+            success: true,
+            message: transSuccess.send_reset_password_success,
+          });
+        });
+    } catch (err) {
+      console.log(err);
+      reject({ success: false, message: transMail.send_failed });
+    }
+  });
+};
+
+let resetPassword = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let { resetToken, email } = data;
+      if (!resetToken) {
+        return resolve({ success: false, message: "Missing token reset" });
+      }
+
+      const resetTokenObject = await PasswordResetTokenModel.findOneAndRemove({
+        userEmail: email,
+        resetToken,
+      });
+      // console.log("resetToken", resetTokenObject);
+
+      if (!resetTokenObject) {
+        return resolve({
+          success: false,
+          message: "Cannot find matching reset token",
+        });
+      }
+
+      if (moment().isAfter(resetTokenObject.expires)) {
+        return resolve({ success: false, message: "Reset token is expired" });
+      }
+
+      let user = await UserModel.findByEmail(resetTokenObject.userEmail);
+      if (!user) {
+        return resolve({
+          success: false,
+          message: transErrors.account_undefined,
+        });
+      }
+
+      user.local.password = bcrypt.hashSync(data.password, salt);
+      await user.save();
+
+      resolve({ message: transSuccess.user_password_updated, success: true });
+    } catch (err) {
+      console.log(err);
+      reject({ success: false, message: transErrors.server_error });
+    }
+  });
+};
+
+module.exports = {
+  register,
+  verifyAccount,
+  login,
+  verifyRFToken,
+  sendPasswordResetLink,
+  resetPassword,
+};
