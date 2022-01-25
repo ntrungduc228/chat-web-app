@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const Schema = mongoose.Schema;
 
@@ -53,11 +54,22 @@ UserSchema.statics = {
     return this.findOne({ "local.verifyToken": token }).exec();
   },
 
+  findUserById(id) {
+    return this.findById(id).exec();
+  },
+
   verify(token) {
     return this.findOneAndUpdate(
       { "local.verifyToken": token },
       { "local.isActive": true, "local.verifyToken": null }
     ).exec();
+  },
+};
+
+UserSchema.methods = {
+  comparePassword(password) {
+    // return a promise has result is true or false
+    return bcrypt.compare(password, this.local.password);
   },
 };
 
