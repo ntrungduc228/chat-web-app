@@ -155,7 +155,7 @@ let verifyRFToken = async (refreshTokenFromClient) => {
       return {
         checkRFToken: true,
         success: false,
-        message: "Refresh token is not in database!",
+        message: "Refresh token is missing!",
       };
     }
 

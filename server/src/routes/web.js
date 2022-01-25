@@ -26,12 +26,6 @@ let initWebRoutes = (app) => {
   );
 
   router.get("/check", authMiddleware.checkLoggedIn);
-  router.get("/checktime", (req, res) => {
-    return res.status(200).json({
-      data: moment().format(),
-      newDate: moment().add(3, "minutes").format(),
-    });
-  });
 
   return app.use("/", router);
 };
