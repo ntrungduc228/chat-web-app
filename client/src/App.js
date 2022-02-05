@@ -3,6 +3,10 @@ import "./App.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadPosts } from "./redux/actions/postAction";
+import RoutesComponent from "./components/Routes/RoutesComponent";
+// import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+// import "antd/dist/antd.css";
 
 function App() {
   const data = useSelector((state) => state.posts.data2);
@@ -16,20 +20,7 @@ function App() {
   }, [dispatch]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RoutesComponent />
     </div>
   );
 }

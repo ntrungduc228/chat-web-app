@@ -1,0 +1,42 @@
+.signin-content {
+  &-header {
+    padding-bottom: 20px;
+    text-align: center;
+  }
+
+  h3 {
+    font-size: calc(18px + (26 - 18) * ((100vw - 320px) / (1920 - 320)));
+    font-family: "Rubik", sans-serif;
+    font-weight: 500;
+    padding-bottom: 16px;
+  }
+
+  h4 {
+    margin-bottom: 35px;
+    line-height: 1.4;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+  }
+}
+
+.forgot-password-content {
+  display: flex;
+  justify-content: end;
+
+  .forgot-password-link {
+    font-family: "Montserrat", sans-serif !important;
+    font-weight: 500 !important;
+  }
+}
+
+.signin-form-btn-container {
+  margin-bottom: 10px;
+
+  .signin-form-btn {
+    padding: 20px 60px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    font-weight: 550;
+  }
+}
