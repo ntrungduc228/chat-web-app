@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button, Space, Row } from "antd";
+import { Form, Input, Button, Space, Row, Image } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import "./Signin.scss";
@@ -31,9 +31,12 @@ const SignIn = () => {
       style={{ minHeight: "100vh", backgroundColor: "#f1f1f1" }}
     >
       <Content>
-        <div className="text-center mb-5 signin-content">
-          <div className="signin-content-header">
-            <img src="/landing-logo.png" />
+        <div className="text-center auth-form-header">
+          <div className="auth-form-header-logo">
+            <Image
+              src={`${require("../../assets/landing-logo.png")}`}
+              preview={false}
+            />
           </div>
           <h3>Hello Everyone , We are Chitchat</h3>
           <h4>Wellcome to chitchat please, signin to your account.</h4>
@@ -41,8 +44,8 @@ const SignIn = () => {
 
         <Form
           layout="vertical"
-          name="normal_login"
-          className="login-form"
+          name="signin_form"
+          className="auth-form-content"
           onFinish={onFinish}
           {...formLayout}
         >
@@ -51,12 +54,22 @@ const SignIn = () => {
             name="email"
             rules={[
               {
+                type: "email",
+                message: "The input is not valid E-mail!",
+              },
+              {
                 required: true,
-                message: "Please input your Email!",
+                message: "Please input your E-mail!",
               },
             ]}
+            className="auth-form-item"
           >
-            <Input size="large" prefix={<MailOutlined />} placeholder="Email" />
+            <Input
+              size="large"
+              className="auth-form-input "
+              prefix={<MailOutlined style={{ marginRight: "4px" }} />}
+              placeholder="Email"
+            />
           </Form.Item>
           <Form.Item
             label="Password"
@@ -68,14 +81,20 @@ const SignIn = () => {
               },
             ]}
           >
-            <Input
+            <Input.Password
               size="large"
-              prefix={<LockOutlined className="site-form-item-icon" />}
+              className="auth-form-input"
+              prefix={
+                <LockOutlined
+                  className="site-form-item-icon"
+                  style={{ marginRight: "4px" }}
+                />
+              }
               type="password"
               placeholder="Password"
             />
           </Form.Item>
-          <Form.Item>
+          <Form.Item style={{ marginBottom: "20px" }}>
             <div className="forgot-password-content">
               <Link
                 className="login-form-forgot forgot-password-link"
@@ -86,19 +105,19 @@ const SignIn = () => {
             </div>
           </Form.Item>
 
-          <Form.Item className="signin-form-btn-container">
+          <Form.Item className="auth-form-btn-container">
             <Space>
               <Button
                 type="primary"
                 htmlType="submit"
                 size="large"
-                className="signin-form-btn"
+                className="auth-form-btn"
               >
                 Sign In
               </Button>
             </Space>
           </Form.Item>
-          <Form.Item style={{ marginBottom: "6px" }}>
+          <Form.Item style={{ marginBottom: "0px" }}>
             Or <Link to="/signup">Sign Up now!</Link>
           </Form.Item>
         </Form>

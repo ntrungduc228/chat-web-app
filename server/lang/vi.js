@@ -3,7 +3,7 @@ const transValidation = {
   gender_incorrect: "Bede phải hông tar??",
   password_incorrect:
     "Mật khẩu phải gồm 6 ký tự, bao gồm chữ hoa, chữ thường, chữ số và ký tự đặc biệt.",
-  password_confirmation_incorrect: "Nhập lại mật khẩu chưa chính xác!",
+  confirm_password_incorrect: "Nhập lại mật khẩu chưa chính xác!",
   update_username:
     "Username giới hạn trong khoảng 3-17 ký tự, và không được có ký tự đặc biệt.",
   update_gender: "Có phải bạn là giới tính thứ 3?",

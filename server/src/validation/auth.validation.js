@@ -7,10 +7,9 @@ let register = [
   check("password", transValidation.password_incorrect).isLength({ min: 6 }),
   // .matches(  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/ ),
   //.matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/),
-  check(
-    "password_confirmation",
-    transValidation.password_confirmation_incorrect
-  ).custom((value, { req }) => value === req.body.password),
+  check("confirm_password", transValidation.confirm_password_incorrect).custom(
+    (value, { req }) => value === req.body.password
+  ),
 ];
 
 let login = [
@@ -29,10 +28,9 @@ let resetPassword = [
   check("password", transValidation.password_incorrect).isLength({ min: 6 }),
   // .matches(  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/ ),
   //.matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/),
-  check(
-    "password_confirmation",
-    transValidation.password_confirmation_incorrect
-  ).custom((value, { req }) => value === req.body.password),
+  check("confirm_password", transValidation.confirm_password_incorrect).custom(
+    (value, { req }) => value === req.body.password
+  ),
 ];
 
 module.exports = {
