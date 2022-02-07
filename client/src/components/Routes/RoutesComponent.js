@@ -19,7 +19,7 @@ const RoutesComponent = () => {
               element={
                 <PrivateRoutes>
                   {/* {CustomLoadable({ loader: route.loader })} */}
-                  route.element
+                  {route.element}
                 </PrivateRoutes>
               }
             />

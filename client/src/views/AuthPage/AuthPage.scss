@@ -1,0 +1,42 @@
+.auth-form-header {
+  &-logo {
+    padding-bottom: 20px;
+    text-align: center;
+  }
+
+  h3 {
+    font-size: calc(18px + (26 - 18) * ((100vw - 320px) / (1920 - 320)));
+    font-family: "Rubik", sans-serif;
+    font-weight: 500;
+    padding-bottom: 16px;
+  }
+
+  h4 {
+    margin-bottom: 24px;
+    line-height: 1.4;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+  }
+}
+
+.auth-form-content {
+  .auth-form-item {
+    margin-bottom: 20px;
+  }
+
+  .auth-form-btn-container {
+    margin-bottom: 10px;
+
+    .auth-form-btn {
+      padding: 20px 60px;
+      display: flex;
+      align-items: center;
+      border-radius: 8px;
+      font-weight: 550;
+    }
+  }
+
+  .auth-form-input {
+    padding: 10px 11px;
+  }
+}

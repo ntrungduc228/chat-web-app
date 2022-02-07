@@ -1,4 +1,5 @@
 import React, { lazy } from "react";
+import "./AuthPage.scss";
 
 const Signin = lazy(() => import("../../components/Signin"));
 
