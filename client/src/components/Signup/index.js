@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form, Input, Button, Space, Row, Radio, Image } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import "./Signup.scss";
+import { connect } from "react-redux";
+import * as actions from "../../redux/actions/Auth";
 
 const Content = styled.div`
   z-index: 2;
@@ -17,20 +19,74 @@ const Content = styled.div`
   }
 `;
 
-const SignUp = () => {
+// const rules = {
+//   email: [
+//     {
+//       type: "email",
+//       message: "The input is not valid E-mail!",
+//     },
+//     {
+//       required: true,
+//       message: "Please input your E-mail!",
+//     },
+//   ],
+//   gender: [
+//     {
+//       required: true,
+//       message: "Please select gender!",
+//     },
+//   ],
+//   password: [
+//     {
+//       required: true,
+//       message: "Please input your Password!",
+//     },
+//     {
+//       min: 6,
+//       message: "At less 6 characters!",
+//     },
+//     {
+//       max: 128,
+//       message: "Must be 128 characters or less!",
+//     },
+//   ],
+//   confirm_password: [
+//     {
+//       required: true,
+//       message: "Please confirm your Password!",
+//     },
+//     ({ getFieldValue }) => ({
+//       validator(_, value) {
+//         if (!value || getFieldValue("password") === value) {
+//           return Promise.resolve();
+//         }
+//         return Promise.reject(
+//           new Error("The two passwords that you entered do not match!")
+//         );
+//       },
+//     }),
+//   ],
+// };
+
+const rules = { email: [], password: [], gender: [], confirm_password: [] };
+
+const SignUp = (props) => {
+  const { signUpLoading, signUpMessage } = props;
+
   const onFinish = (values) => {
+    props.signUpStart(values);
     console.log("Received values of form: ", values);
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-  const [value, setValue] = React.useState("male");
+  // const [gender, setGender] = React.useState("male");
 
-  const onChange = (e) => {
-    console.log("radio checked", e.target.value);
-    setValue(e.target.value);
-  };
+  // const onChange = (e) => {
+  //   console.log("radio checked", e.target.value);
+  //   setGender(e.target.value);
+  // };
 
   return (
     <Row
@@ -63,16 +119,7 @@ const SignUp = () => {
           <Form.Item
             label="Email"
             name="email"
-            rules={[
-              {
-                type: "email",
-                message: "The input is not valid E-mail!",
-              },
-              {
-                required: true,
-                message: "Please input your E-mail!",
-              },
-            ]}
+            rules={rules.email}
             className="auth-form-item"
             hasFeedback
           >
@@ -86,17 +133,12 @@ const SignUp = () => {
           <Form.Item
             label="Gender"
             name="gender"
-            rules={[
-              {
-                required: true,
-                message: "Please select gender!",
-              },
-            ]}
+            rules={rules.gender}
             className="auth-form-item"
           >
             <Radio.Group
-              onChange={onChange}
-              value={value}
+              // onChange={onChange}
+              // value={gender}
               style={{ display: "flex", justifyContent: "start" }}
             >
               <Radio value={"male"} defaultValue>
@@ -108,20 +150,7 @@ const SignUp = () => {
           <Form.Item
             label="Password"
             name="password"
-            rules={[
-              {
-                required: true,
-                message: "Please input your Password!",
-              },
-              {
-                min: 6,
-                message: "At less 6 characters!",
-              },
-              {
-                max: 128,
-                message: "Must be 128 characters or less!",
-              },
-            ]}
+            rules={rules.password}
             className="auth-form-item"
             hasFeedback
           >
@@ -142,25 +171,7 @@ const SignUp = () => {
           <Form.Item
             label="Confirm Password"
             name="confirm_password"
-            rules={[
-              {
-                required: true,
-                message: "Please confirm your password!",
-              },
-              ({ getFieldValue }) => ({
-                validator(_, value) {
-                  if (!value || getFieldValue("password") === value) {
-                    return Promise.resolve();
-                  }
-
-                  return Promise.reject(
-                    new Error(
-                      "The two passwords that you entered do not match!"
-                    )
-                  );
-                },
-              }),
-            ]}
+            rules={rules.confirm_password}
             hasFeedback
           >
             <Input.Password
@@ -184,6 +195,7 @@ const SignUp = () => {
                 htmlType="submit"
                 size="large"
                 className="auth-form-btn"
+                loading={signUpLoading}
               >
                 Sign Up
               </Button>
@@ -198,4 +210,17 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+const mapStateToProps = (state) => {
+  const { signUpLoading, signUpMessage, signUpSuccess } = state.auth;
+  const { appLanguage } = state.app;
+  return { signUpLoading, appLanguage, signUpMessage, signUpSuccess };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showLoading: () => dispatch(actions.showLoading()),
+    signUpStart: (data) => dispatch(actions.signUpStart(data)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

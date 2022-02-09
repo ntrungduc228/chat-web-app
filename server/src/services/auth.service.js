@@ -3,7 +3,8 @@ const RefreshTokenModel = require("../models/refreshToken.model");
 const PasswordResetTokenModel = require("../models/passwordReset.model");
 const bcrypt = require("bcryptjs");
 const { v4: uuidv4 } = require("uuid");
-const { transErrors, transSuccess, transMail } = require("../../lang/vi");
+const { transErrorsVi, transSuccessVi, transMailVi } = require("../../lang/vi");
+const { transErrorsEn, transSuccessEn, transMailEn } = require("../../lang/en");
 const emailService = require("../services/email.service");
 const jwtHelper = require("../helpers/jwt");
 const moment = require("moment");
@@ -19,17 +20,20 @@ let register = (data, protocol, host) => {
       if (userByEmail) {
         if (userByEmail.deletedAt != null) {
           return resolve({
-            message: transErrors.account_removed,
+            message: transErrorsEn.account_removed,
             success: false,
           });
         }
         if (!userByEmail.local.isActive) {
           return resolve({
-            message: transErrors.account_not_active,
+            message: transErrorsEn.account_not_active,
             success: false,
           });
         }
-        return resolve({ message: transErrors.account_in_use, success: false });
+        return resolve({
+          message: transErrorsEn.account_in_use,
+          success: false,
+        });
       }
 
       let userItem = {
@@ -55,14 +59,14 @@ let register = (data, protocol, host) => {
         .then((success) => {
           return resolve({
             success: true,
-            message: transSuccess.userCreated(user.local.email),
+            message: transSuccessEn.userCreated(user.local.email),
           });
         })
         .catch(async (error) => {
           //remove user
           await UserModel.removeById(user._id);
           console.log(error);
-          reject({ success: false, message: transMail.send_failed });
+          reject({ success: false, message: transMailEn.send_failed });
         });
     } catch (err) {
       reject(err);
@@ -77,14 +81,14 @@ let login = (data) => {
       if (!user) {
         resolve({
           success: false,
-          message: transErrors.account_login_incorrect,
+          message: transErrorsVi.account_login_incorrect,
         });
       }
 
       if (!user.local.isActive) {
         resolve({
           success: false,
-          message: transErrors.account_not_active,
+          message: transErrorsVi.account_not_active,
         });
       }
 
@@ -92,7 +96,7 @@ let login = (data) => {
       if (!checkPassword) {
         resolve({
           success: false,
-          message: transErrors.account_login_incorrect,
+          message: transErrorsVi.account_login_incorrect,
         });
       }
 
@@ -116,12 +120,16 @@ let login = (data) => {
 
       resolve({
         success: true,
-        message: transSuccess.loginSuccess(user.username),
+        message: transSuccessVi.loginSuccess(user.username),
         token: { accessToken, refreshToken },
       });
     } catch (err) {
       console.log("error", err);
-      reject({ success: false, message: transErrors.server_error, error: err });
+      reject({
+        success: false,
+        message: transErrorsVi.server_error,
+        error: err,
+      });
     }
   });
 };
@@ -133,18 +141,22 @@ let verifyAccount = (data) => {
       if (!userByToken) {
         return resolve({
           success: false,
-          message: transErrors.token_undefined,
+          message: transErrorsVi.token_undefined,
         });
       }
       await UserModel.verify(data.token);
 
       return resolve({
-        message: transSuccess.account_actived,
+        message: transSuccessVi.account_actived,
         success: true,
       });
     } catch (err) {
       console.log("error", err);
-      reject({ success: false, message: transErrors.server_error, error: err });
+      reject({
+        success: false,
+        message: transErrorsVi.server_error,
+        error: err,
+      });
     }
   });
 };
@@ -212,7 +224,7 @@ let verifyRFToken = async (refreshTokenFromClient) => {
     console.log("error", err);
     return res.status(500).json({
       success: false,
-      message: transErrors.server_error,
+      message: transErrorsVi.server_error,
       error: err,
     });
   }
@@ -235,12 +247,12 @@ let sendPasswordResetLink = async (user, protocol, host) => {
           // console.log("sucess", success);
           return resolve({
             success: true,
-            message: transSuccess.send_reset_password_success,
+            message: transSuccessVi.send_reset_password_success,
           });
         });
     } catch (err) {
       console.log(err);
-      reject({ success: false, message: transMail.send_failed });
+      reject({ success: false, message: transMailVi.send_failed });
     }
   });
 };
@@ -274,17 +286,17 @@ let resetPassword = (data) => {
       if (!user) {
         return resolve({
           success: false,
-          message: transErrors.account_undefined,
+          message: transErrorsVi.account_undefined,
         });
       }
 
       user.local.password = bcrypt.hashSync(data.password, salt);
       await user.save();
 
-      resolve({ message: transSuccess.user_password_updated, success: true });
+      resolve({ message: transSuccessVi.user_password_updated, success: true });
     } catch (err) {
       console.log(err);
-      reject({ success: false, message: transErrors.server_error });
+      reject({ success: false, message: transErrorsVi.server_error });
     }
   });
 };

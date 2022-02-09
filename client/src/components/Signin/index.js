@@ -4,6 +4,8 @@ import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import "./Signin.scss";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../../redux/actions/Auth";
 
 const Content = styled.div`
   z-index: 2;
@@ -17,10 +19,32 @@ const Content = styled.div`
   }
 `;
 
-const formLayout = {};
+const rules = {
+  email: [
+    {
+      type: "email",
+      message: "The input is not valid E-mail!",
+    },
+    {
+      required: true,
+      message: "Please input your E-mail!",
+    },
+  ],
+  password: [
+    {
+      required: true,
+      message: "Please input your Password!",
+    },
+  ],
+};
 
 const SignIn = () => {
+  const dispatch = useDispatch();
+
+  const { loading } = useSelector((state) => state.auth);
+
   const onFinish = (values) => {
+    dispatch(actions.showLoading());
     console.log("Received values of form: ", values);
   };
   return (
@@ -47,21 +71,11 @@ const SignIn = () => {
           name="signin_form"
           className="auth-form-content"
           onFinish={onFinish}
-          {...formLayout}
         >
           <Form.Item
             label="Email"
             name="email"
-            rules={[
-              {
-                type: "email",
-                message: "The input is not valid E-mail!",
-              },
-              {
-                required: true,
-                message: "Please input your E-mail!",
-              },
-            ]}
+            rules={rules.email}
             className="auth-form-item"
           >
             <Input
@@ -71,16 +85,7 @@ const SignIn = () => {
               placeholder="Email"
             />
           </Form.Item>
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: "Please input your Password!",
-              },
-            ]}
-          >
+          <Form.Item label="Password" name="password" rules={rules.password}>
             <Input.Password
               size="large"
               className="auth-form-input"
@@ -112,6 +117,7 @@ const SignIn = () => {
                 htmlType="submit"
                 size="large"
                 className="auth-form-btn"
+                loading={loading}
               >
                 Sign In
               </Button>

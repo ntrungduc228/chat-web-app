@@ -2,16 +2,22 @@
 
 ## Live demo:
 
+- App is updating
+
 ## Features
 
     - Sign in, sign up
+    - ...
 
 ## Installation
 
 - Install Client
+
   - cd client
   - yarn install
+
 - Install Server
+
   - cd server
   - yarn install
 
