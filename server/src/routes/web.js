@@ -4,7 +4,6 @@ const authController = require("../controllers/auth.controller");
 
 const { authValid } = require("../validation/index");
 const authMiddleware = require("../middlewares/auth");
-const moment = require("moment");
 
 let initWebRoutes = (app) => {
   router.get("/", (req, res) => {
@@ -27,7 +26,7 @@ let initWebRoutes = (app) => {
 
   router.get("/check", authMiddleware.checkLoggedIn);
 
-  return app.use("/", router);
+  return app.use("/api", router);
 };
 
 module.exports = initWebRoutes;

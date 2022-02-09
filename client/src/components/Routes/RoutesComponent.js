@@ -27,7 +27,7 @@ const RoutesComponent = () => {
           {routes.authRoutes.map((route) => (
             <Route
               key={route.path}
-              exact
+              exact={!!route.exact}
               path={route.path}
               element={<AuthRoutes>{route.element}</AuthRoutes>}
             />

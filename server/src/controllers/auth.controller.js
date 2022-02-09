@@ -1,4 +1,4 @@
-const { transSuccess, transErrors } = require("../../lang/vi");
+const { transSuccessVi, transErrorsVi } = require("../../lang/vi");
 const { validationResult } = require("express-validator");
 const emailService = require("../services/email.service");
 const authService = require("../services/auth.service");
@@ -13,7 +13,7 @@ let register = async (req, res) => {
       errorArr.push(item.msg);
     });
 
-    return res.status(401).send({ success: false, message: errorArr });
+    return res.status(200).json({ success: false, message: errorArr });
   }
   try {
     let newUser = await authService.register(
@@ -26,7 +26,7 @@ let register = async (req, res) => {
     console.log("err", err);
     return res
       .status(500)
-      .send({ success: false, message: transErrors.server_error });
+      .send({ success: false, message: transErrorsVi.server_error, err: err });
   }
 };
 
@@ -53,7 +53,7 @@ let login = async (req, res) => {
     console.log("err", err);
     return res
       .status(500)
-      .send({ success: false, message: transErrors.server_error });
+      .send({ success: false, message: transErrorsVi.server_error });
   }
 };
 
@@ -74,7 +74,7 @@ let sendPasswordResetLink = async (req, res) => {
     if (!user) {
       return res
         .status(401)
-        .send({ success: false, message: transErrors.email_not_found });
+        .send({ success: false, message: transErrorsVi.email_not_found });
     }
 
     let response = await authService.sendPasswordResetLink(
@@ -88,7 +88,7 @@ let sendPasswordResetLink = async (req, res) => {
     console.log("err", err);
     return res
       .status(500)
-      .send({ success: false, message: transErrors.server_error });
+      .send({ success: false, message: transErrorsVi.server_error });
   }
 };
 
@@ -115,7 +115,7 @@ let resetPassword = async (req, res) => {
     console.log("err", err);
     return res
       .status(500)
-      .send({ success: false, message: transErrors.server_error });
+      .send({ success: false, message: transErrorsVi.server_error });
   }
 };
 
