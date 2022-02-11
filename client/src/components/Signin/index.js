@@ -4,7 +4,7 @@ import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import "./Signin.scss";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import * as actions from "../../redux/actions/Auth";
 
 const Content = styled.div`
@@ -38,13 +38,11 @@ const rules = {
   ],
 };
 
-const SignIn = () => {
-  const dispatch = useDispatch();
-
-  const { loading } = useSelector((state) => state.auth);
+const SignIn = (props) => {
+  const { signInLoading, signInMessage, signInSuccess } = props;
 
   const onFinish = (values) => {
-    dispatch(actions.showLoading());
+    props.signInStart(values);
     console.log("Received values of form: ", values);
   };
   return (
@@ -117,7 +115,7 @@ const SignIn = () => {
                 htmlType="submit"
                 size="large"
                 className="auth-form-btn"
-                loading={loading}
+                loading={signInLoading}
               >
                 Sign In
               </Button>
@@ -132,4 +130,15 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+const mapStateToProps = (state) => {
+  const { signInLoading, signInMessage, signInSuccess } = state.auth;
+  return { signInLoading, signInMessage, signInSuccess };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signInStart: (data) => dispatch(actions.signInStart(data)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -15,8 +15,8 @@ let register = [
 ];
 
 let login = [
-  check("email", transErrorsVi.account_login_incorrect).isEmail().trim(),
-  check("password", transErrorsVi.account_login_incorrect).isLength({
+  check("email", transErrorsEn.account_login_incorrect).isEmail().trim(),
+  check("password", transErrorsEn.account_login_incorrect).isLength({
     min: 6,
   }),
 ];

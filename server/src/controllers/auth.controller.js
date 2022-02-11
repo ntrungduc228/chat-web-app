@@ -45,15 +45,16 @@ let login = async (req, res) => {
         errorArr.push(item.msg);
       });
 
-      return res.status(401).send({ success: false, message: errorArr });
+      return res.status(200).json({ success: false, message: errorArr });
     }
+
     let data = await authService.login(req.body);
     return res.status(200).json(data);
   } catch (err) {
     console.log("err", err);
     return res
       .status(500)
-      .send({ success: false, message: transErrorsVi.server_error });
+      .send({ success: false, message: transErrorsEn.server_error });
   }
 };
 
@@ -67,7 +68,7 @@ let sendPasswordResetLink = async (req, res) => {
         errorArr.push(item.msg);
       });
 
-      return res.status(401).send({ success: false, message: errorArr });
+      return res.status(200).send({ success: false, message: errorArr });
     }
     let { email } = req.body;
     let user = await UserModel.findByEmail(email);

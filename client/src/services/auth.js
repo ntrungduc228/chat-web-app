@@ -7,3 +7,7 @@ export const createNewAccount = (data) => {
 export const verifyAccount = (data) => {
   return axios.post("/api/verify-account", data);
 };
+
+export const signInAccount = (data) => {
+  return axios.post("/api/login", data);
+};

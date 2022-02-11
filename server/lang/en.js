@@ -21,8 +21,8 @@ const transValidationEn = {
 };
 
 const transErrorsEn = {
-  account_login_incorrect: "Tài khoản hoặc mật khẩu không chính xác",
-  email_not_found: "Không tìm thấy email, vui lòng kiểm tra lại thông tin",
+  account_login_incorrect: "Incorrect email or password!",
+  email_not_found: "Email not found!",
   account_in_use: "User already exists!",
   account_removed:
     "Tài khoản này đã bị dỡ khỏi hệ thống, nếu cho rằng đây là hiêu lầm, vui lòng liên hệ với bộ phần hỗ  trợ của chúng tôi.",
@@ -30,7 +30,7 @@ const transErrorsEn = {
     "Account is exists but hasn't been activated yet. Please check your email or contact with our support Team. Thanks!",
   account_undefined: "Tài khoản này không tồn tại.",
   token_undefined: "Token is not exists!",
-  login_failed: "Sai tài khoản hoặc mật khẩu!",
+  login_failed: "Incorrect email or password!",
   server_error: "Server error - please contact your administrator, thank you!",
 };
 
