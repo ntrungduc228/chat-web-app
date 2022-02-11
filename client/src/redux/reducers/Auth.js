@@ -5,6 +5,9 @@ const initialState = {
   signUpLoading: false,
   signUpSuccess: false,
   signUpMessage: "",
+  verifyAccountFinish: false,
+  verifyAccountSuccess: false,
+  verifyAccountMessage: "",
 };
 
 const authReducer = (state = initialState, action) => {
@@ -32,6 +35,27 @@ const authReducer = (state = initialState, action) => {
         signUpLoading: false,
         signUpSuccess: false,
         signUpMessage: action.payload,
+      };
+    case constants.VERIFY_ACCOUNT_START:
+      return {
+        ...state,
+        verifyAccountFinish: false,
+        verifyAccountSuccess: false,
+      };
+
+    case constants.VERIFY_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+        verifyAccountFinish: true,
+        verifyAccountSuccess: true,
+        verifyAccountMessage: action.payload,
+      };
+    case constants.VERIFY_ACCOUNT_ERROR:
+      return {
+        ...state,
+        verifyAccountFinish: true,
+        verifyAccountSuccess: false,
+        verifyAccountMessage: action.payload,
       };
     default:
       return state;

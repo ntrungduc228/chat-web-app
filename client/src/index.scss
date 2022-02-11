@@ -5,6 +5,8 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800&amp;display=swap");
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,600&amp;display=swap");
 
+@import "./styles/GlobalStyles";
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -24,6 +26,22 @@ code {
     monospace;
 }
 
+h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: calc(30px + 18 * (100vw - 320px) / 1600);
+  font-weight: 800;
+  color: #223645;
+  margin: 0;
+}
+
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: calc(20px + (28 - 20) * ((100vw - 320px) / (1920 - 320)));
+  font-weight: 800;
+  color: #223645;
+  margin: 0;
+}
+
 h3 {
   font-family: "Montserrat", sans-serif;
   font-size: calc(16px + (18 - 16) * ((100vw - 320px) / (1920 - 320)));
@@ -33,6 +51,7 @@ h3 {
 }
 
 h4 {
+  font-family: "Roboto", sans-serif;
   font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
   font-weight: 400;
   color: #647589;

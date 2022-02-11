@@ -1,0 +1,407 @@
+@-webkit-keyframes ripple1 {
+  0% {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+    opacity: 0.3;
+  }
+  100% {
+    -webkit-transform: scale(3.5);
+    transform: scale(3.5);
+    opacity: 0;
+  }
+}
+@keyframes ripple1 {
+  0% {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+    opacity: 0.3;
+  }
+  100% {
+    -webkit-transform: scale(3.5);
+    transform: scale(3.5);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes ripple2 {
+  0% {
+    -webkit-transform: scale(3.5);
+    transform: scale(3.5);
+  }
+  100% {
+    -webkit-transform: scale(5.5);
+    transform: scale(5.5);
+  }
+}
+@keyframes ripple2 {
+  0% {
+    -webkit-transform: scale(3.5);
+    transform: scale(3.5);
+  }
+  100% {
+    -webkit-transform: scale(5.5);
+    transform: scale(5.5);
+  }
+}
+@-webkit-keyframes ripple3 {
+  0% {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+  }
+  100% {
+    -webkit-transform: scale(3.5);
+    transform: scale(3.5);
+  }
+}
+@keyframes ripple3 {
+  0% {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+  }
+  100% {
+    -webkit-transform: scale(3.5);
+    transform: scale(3.5);
+  }
+}
+
+@-webkit-keyframes rotatedTwo {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotatedTwo {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.animation-block {
+  .right-circle1 {
+    background-image: linear-gradient(
+      to right,
+      #cde7fa,
+      #f1f8fe,
+      #f1f8fe,
+      #f1f8fe
+    );
+    padding: 1px;
+    width: calc(75px + (140 - 75) * ((100vw - 320px) / (1920 - 320)));
+    height: calc(75px + (140 - 75) * ((100vw - 320px) / (1920 - 320)));
+    border-color: transparent;
+    border-radius: 50%;
+    border-width: 1px;
+    top: 1%;
+    right: 9%;
+    position: absolute;
+  }
+
+  .right-circle {
+    background-image: linear-gradient(to left, #f1f8fe, #f1f8fe, #cde7fa);
+    padding: 1px;
+    width: calc(90px + (260 - 90) * ((100vw - 320px) / (1920 - 320)));
+    height: calc(90px + (260 - 90) * ((100vw - 320px) / (1920 - 320)));
+    border-color: transparent;
+    border-radius: 50%;
+    border-width: 1px;
+    bottom: 18%;
+    right: 0;
+    position: absolute;
+  }
+
+  .top-circle {
+    background-image: linear-gradient(#f1f8fe, #f1f8fe, #cde7fa);
+    padding: 1px;
+    height: calc(50px + (100 - 50) * ((100vw - 320px) / (1920 - 320)));
+    width: calc(50px + (100 - 50) * ((100vw - 320px) / (1920 - 320)));
+    border-color: transparent;
+    border-radius: 50%;
+    border-width: 1px;
+    top: 2%;
+    left: 20%;
+    position: absolute;
+  }
+
+  .center-circle {
+    background-image: linear-gradient(to right, #cde7fa, #f1f8fe, #f1f8fe);
+    padding: 1px;
+    width: calc(50px + (100 - 50) * ((100vw - 320px) / (1920 - 320)));
+    height: calc(50px + (100 - 50) * ((100vw - 320px) / (1920 - 320)));
+    border-color: transparent;
+    border-radius: 50%;
+    border-width: 1px;
+    top: 45%;
+    left: 6%;
+    position: absolute;
+  }
+
+  .main-circle {
+    background-image: linear-gradient(#cde7fa, #f1f8fe, #f1f8fe);
+    padding: 1px;
+    width: calc(100px + (680 - 100) * ((100vw - 320px) / (1920 - 320)));
+    height: calc(100px + (680 - 100) * ((100vw - 320px) / (1920 - 320)));
+    border-color: transparent;
+    border-radius: 50%;
+    border-width: 1px;
+    // top: 15%;
+    top: 66%;
+    right: 0%;
+    position: absolute;
+  }
+
+  .bottom-circle {
+    background-image: linear-gradient(#cde7fa, #f1f8fe, #f1f8fe);
+    padding: 1px;
+    width: calc(50px + (100 - 50) * ((100vw - 320px) / (1920 - 320)));
+    height: calc(50px + (100 - 50) * ((100vw - 320px) / (1920 - 320)));
+    border-color: transparent;
+    border-radius: 50%;
+    border-width: 1px;
+    bottom: 0%;
+    left: 13%;
+    position: absolute;
+  }
+
+  .bottom-circle1 {
+    background-image: linear-gradient(#cde7fa, #f1f8fe, #f1f8fe);
+    padding: 1px;
+    width: calc(40px + (120 - 40) * ((100vw - 320px) / (1920 - 320)));
+    height: calc(40px + (120 - 40) * ((100vw - 320px) / (1920 - 320)));
+    border-color: transparent;
+    border-radius: 50%;
+    border-width: 1px;
+    bottom: 2%;
+    right: 22%;
+    position: absolute;
+  }
+
+  .cross {
+    position: absolute;
+    background: #d0eafb;
+    height: 15px;
+    width: 2px;
+    top: 175px;
+    right: 50px;
+    -webkit-animation: rotatedTwo 22s infinite linear;
+    animation: rotatedTwo 22s infinite linear;
+  }
+
+  .cross1 {
+    position: absolute;
+    background: #d0eafb;
+    bottom: 10%;
+    height: 15px;
+    left: 50%;
+    width: 2px;
+    -webkit-animation: rotatedTwo 50s infinite linear;
+    animation: rotatedTwo 50s infinite linear;
+  }
+
+  .cross2 {
+    position: absolute;
+    background: #d0eafb;
+    top: 65%;
+    height: 15px;
+    left: 200px;
+    width: 2px;
+    -webkit-animation: rotatedTwo 50s infinite linear;
+    animation: rotatedTwo 50s infinite linear;
+  }
+
+  .dot {
+    position: absolute;
+    height: 5px;
+    width: 5px;
+    background-color: #d0eafb;
+    border-radius: 50%;
+    display: inline-block;
+    -webkit-animation: animationFramesOne 50s infinite linear;
+    animation: animationFramesOne 50s infinite linear;
+    top: 10%;
+  }
+
+  .dot1 {
+    left: 15%;
+    position: absolute;
+    height: 5px;
+    width: 5px;
+    background-color: #d0eafb;
+    -webkit-animation: animationFramesOne 90s infinite linear;
+    animation: animationFramesOne 90s infinite linear;
+    border-radius: 50%;
+  }
+
+  .bottom-circle {
+    background-image: linear-gradient(#cde7fa, #f1f8fe, #f1f8fe);
+    padding: 1px;
+    width: calc(50px + (100 - 50) * ((100vw - 320px) / (1920 - 320)));
+    height: calc(50px + (100 - 50) * ((100vw - 320px) / (1920 - 320)));
+    border-color: transparent;
+    border-radius: 50%;
+    border-width: 1px;
+    bottom: 0%;
+    left: 13%;
+    position: absolute;
+  }
+
+  .bottom-circle1 {
+    background-image: linear-gradient(#cde7fa, #f1f8fe, #f1f8fe);
+    padding: 1px;
+    width: calc(40px + 80 * (100vw - 320px) / 1600);
+    height: calc(40px + 80 * (100vw - 320px) / 1600);
+    border-color: transparent;
+    border-radius: 50%;
+    border-width: 1px;
+    bottom: 2%;
+    right: 22%;
+    position: absolute;
+  }
+}
+
+.bg_circle {
+  div {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #d0eafb;
+    border-radius: 50%;
+    position: relative;
+    z-index: 9;
+
+    &:nth-of-type(1) {
+      right: 50%;
+      -webkit-animation: animationFramesOne 25s infinite linear;
+      animation: animationFramesOne 25s infinite linear;
+    }
+
+    &:nth-of-type(2) {
+      right: 5%;
+      top: 5%;
+      -webkit-animation: animationFramesOne 35s infinite linear;
+      animation: animationFramesOne 35s infinite linear;
+    }
+
+    &:nth-of-type(3) {
+      bottom: 35%;
+      left: 20%;
+      -webkit-animation: animationFramesOne 65s infinite linear;
+      animation: animationFramesOne 65s infinite linear;
+    }
+
+    &:nth-of-type(4) {
+      bottom: 26%;
+      right: 35%;
+      -webkit-animation: animationFramesOne 100s infinite linear;
+      animation: animationFramesOne 100s infinite linear;
+    }
+
+    &:nth-of-type(5) {
+      bottom: 35%;
+      right: 5%;
+      -webkit-animation: animationFramesOne 45s infinite linear;
+      animation: animationFramesOne 45s infinite linear;
+    }
+
+    &:nth-of-type(6) {
+      bottom: 60%;
+      left: 10%;
+      -webkit-animation: animationFramesOne 90s infinite linear;
+      animation: animationFramesOne 90s infinite linear;
+    }
+
+    &:nth-of-type(7) {
+      top: 40%;
+      right: 40%;
+      -webkit-animation: animationFramesOne 25s infinite linear;
+      animation: animationFramesOne 25s infinite linear;
+    }
+
+    &:nth-of-type(8) {
+      bottom: 30%;
+      left: 3%;
+      -webkit-animation: animationFramesOne 80s infinite linear;
+      animation: animationFramesOne 80s infinite linear;
+    }
+
+    &:nth-of-type(9) {
+      top: 25%;
+      right: 35%;
+      -webkit-animation: animationFramesOne 35s infinite linear;
+      animation: animationFramesOne 35s infinite linear;
+    }
+
+    &:nth-of-type(10) {
+      top: 40%;
+      right: 25%;
+      -webkit-animation: animationFramesOne 55s infinite linear;
+      animation: animationFramesOne 55s infinite linear;
+    }
+
+    &:nth-of-type(11) {
+      bottom: 20%;
+      right: 14%;
+      -webkit-animation: animationFramesOne 10s infinite linear;
+      animation: animationFramesOne 10s infinite linear;
+    }
+  }
+}
+
+@-webkit-keyframes animationFramesOne {
+  0% {
+    -webkit-transform: translate(0px, 0px) rotate(0deg);
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  20% {
+    -webkit-transform: translate(73px, -1px) rotate(36deg);
+    transform: translate(73px, -1px) rotate(36deg);
+  }
+  40% {
+    -webkit-transform: translate(141px, 72px) rotate(72deg);
+    transform: translate(141px, 72px) rotate(72deg);
+  }
+  60% {
+    -webkit-transform: translate(83px, 122px) rotate(108deg);
+    transform: translate(83px, 122px) rotate(108deg);
+  }
+  80% {
+    -webkit-transform: translate(-40px, 72px) rotate(144deg);
+    transform: translate(-40px, 72px) rotate(144deg);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px) rotate(0deg);
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+}
+@keyframes animationFramesOne {
+  0% {
+    -webkit-transform: translate(0px, 0px) rotate(0deg);
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  20% {
+    -webkit-transform: translate(73px, -1px) rotate(36deg);
+    transform: translate(73px, -1px) rotate(36deg);
+  }
+  40% {
+    -webkit-transform: translate(141px, 72px) rotate(72deg);
+    transform: translate(141px, 72px) rotate(72deg);
+  }
+  60% {
+    -webkit-transform: translate(83px, 122px) rotate(108deg);
+    transform: translate(83px, 122px) rotate(108deg);
+  }
+  80% {
+    -webkit-transform: translate(-40px, 72px) rotate(144deg);
+    transform: translate(-40px, 72px) rotate(144deg);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px) rotate(0deg);
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+}

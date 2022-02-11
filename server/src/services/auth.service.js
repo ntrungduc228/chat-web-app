@@ -47,7 +47,10 @@ let register = (data, protocol, host) => {
       };
 
       let user = await UserModel.createNew(userItem);
-      let linkVerifyAccount = `${protocol}://${host}/verify-account?token=${user.local.verifyToken}`;
+      // let linkVerifyAccount = `${protocol}://${host}/verify-account?token=${user.local.verifyToken}`;
+      let REACT_APP_CLIENT_URL =
+        process.env.REACT_APP_CLIENT_URL || "http://localhost:3000";
+      let linkVerifyAccount = `${REACT_APP_CLIENT_URL}/verify-account?token=${user.local.verifyToken}`;
 
       emailService
         .sendMailVerifyAccount({
@@ -141,20 +144,20 @@ let verifyAccount = (data) => {
       if (!userByToken) {
         return resolve({
           success: false,
-          message: transErrorsVi.token_undefined,
+          message: transErrorsEn.token_undefined,
         });
       }
       await UserModel.verify(data.token);
 
       return resolve({
-        message: transSuccessVi.account_actived,
+        message: transSuccessEn.account_actived,
         success: true,
       });
     } catch (err) {
       console.log("error", err);
       reject({
         success: false,
-        message: transErrorsVi.server_error,
+        message: transErrorsEn.server_error,
         error: err,
       });
     }

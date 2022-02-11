@@ -27,9 +27,9 @@ const transErrorsEn = {
   account_removed:
     "Tài khoản này đã bị dỡ khỏi hệ thống, nếu cho rằng đây là hiêu lầm, vui lòng liên hệ với bộ phần hỗ  trợ của chúng tôi.",
   account_not_active:
-    "Account hasn't been activated yet. Please check your email or contact with our support Team. Thanks!",
+    "Account is exists but hasn't been activated yet. Please check your email or contact with our support Team. Thanks!",
   account_undefined: "Tài khoản này không tồn tại.",
-  token_undefined: "Token không tồn tại!",
+  token_undefined: "Token is not exists!",
   login_failed: "Sai tài khoản hoặc mật khẩu!",
   server_error: "Server error - please contact your administrator, thank you!",
 };
@@ -38,8 +38,7 @@ const transSuccessEn = {
   userCreated: (userEmail) => {
     return `Account ${userEmail} has been created. Please click the activation link we sent to your email, thanks!`;
   },
-  account_actived:
-    "Kích hoạt tài khoản thành công, bạn đã có thể đăng nhập ứng dụng.",
+  account_actived: "Account actived successfully!",
   loginSuccess: (username) => {
     return `Xin chào ${username}, chúc bạn một ngày tốt lành.`;
   },
