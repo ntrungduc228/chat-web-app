@@ -1,9 +1,10 @@
 import { lazy } from "react";
 
 // Auth
-// const Signin = lazy(() => import("./components/AuthPage/SigninPage"));
 const SignInPage = lazy(() => import("./views/AuthPage/SigninPage"));
+// const SignInPage = import("./views/AuthPage/SigninPage");
 const SignUpPage = lazy(() => import("./views/AuthPage/SignupPage"));
+const VerifyAccountPage = lazy(() => import("./views/VerifyAccountPage"));
 
 // Chat page
 const ChatPage = lazy(() => import("./components/ChatPage"));
@@ -33,6 +34,12 @@ const authRoutes = [
     exact: true,
     loader: () => import("./components/Signup"),
     element: <SignUpPage />,
+  },
+  {
+    path: "/verify-account",
+    exact: true,
+    loader: () => import("./components/Signup"),
+    element: <VerifyAccountPage />,
   },
 ];
 

@@ -1,0 +1,183 @@
+.verify-account-container {
+  text-align: center;
+  // padding-top: calc(50px + (200 - 50) * ((100vw - 320px) / (1920 - 320)));
+  // padding-bottom: calc(50px + (200 - 50) * ((100vw - 320px) / (1920 - 320)));
+  width: 100%;
+  position: fixed;
+
+  h1 {
+    font-size: calc(80px + (150 - 80) * ((100vw - 320px) / (1920 - 320)));
+    color: #1c9dea;
+    line-height: 0.8;
+    margin-bottom: 40px;
+    text-shadow: 5px 5px 10px #1c9dea;
+    // position: absolute;
+    // left: 39%;
+    // top: 0;
+    z-index: 2;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+    font-weight: 800;
+    // position: absolute;
+    // left: 40%;
+    // top: 45%;
+    z-index: 2;
+  }
+
+  h4 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    line-height: 1.8;
+    // z-index: 2;
+    // position: absolute;
+    // left: 29%;
+    top: 90%;
+  }
+
+  .btn-back-home {
+    background-color: #1c9dea;
+    border-color: #1c9dea !important;
+    color: #fff !important;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-transform: capitalize;
+    padding: 12px 40px;
+    border-radius: 10px;
+    // position: absolute;
+    // left: 41%;
+    // top: 67%;
+    z-index: 2;
+  }
+
+  .animated-bg {
+    i {
+      background: #d4ecfd;
+      position: absolute;
+      height: 100px;
+      width: 100px;
+      border-radius: 100%;
+      opacity: 0.3;
+      -webkit-transform: scale(1.3);
+      transform: scale(1.3);
+      -webkit-animation: ripple1 4s linear infinite;
+      animation: ripple1 4s linear infinite;
+      margin: 0 auto;
+      top: 45%;
+      -webkit-transform: translate(0, 0);
+      transform: translate(0, 0);
+      left: 0;
+      right: 0;
+      z-index: 0;
+
+      &:nth-child(1) {
+        animation: ripple2 4s linear infinite;
+      }
+
+      &:nth-child(2) {
+        -webkit-animation: ripple2 3s linear infinite;
+        animation: ripple2 3s linear infinite;
+      }
+
+      &:nth-child(3) {
+        -webkit-animation: ripple3 2s linear infinite;
+        animation: ripple3 2s linear infinite;
+      }
+    }
+  }
+
+  .animation-block {
+    .cloud-logo {
+      position: absolute;
+      top: 15%;
+      left: 0;
+      -webkit-animation: homecloud 90s linear infinite;
+      animation: homecloud 90s linear infinite;
+      -webkit-transform: scale(0.15);
+      transform: scale(0.15);
+    }
+
+    .cloud-logo1 {
+      position: absolute;
+      bottom: 10%;
+      -webkit-animation: animateCloud 25s linear infinite;
+      animation: animateCloud 25s linear infinite;
+      height: 25px;
+    }
+
+    .cloud-logo2 {
+      position: absolute;
+      top: 2%;
+      -webkit-animation: homecloud 60s linear infinite;
+      animation: homecloud 60s linear infinite;
+      -webkit-transform: scale(0.5);
+      transform: scale(0.5);
+    }
+
+    .cloud-logo3 {
+      position: absolute;
+      top: 31%;
+      -webkit-animation: animateCloud 45s linear infinite;
+      animation: animateCloud 45s linear infinite;
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+      height: 30px;
+    }
+
+    .cloud-logo4 {
+      position: absolute;
+      -webkit-animation: animateCloud 80s linear infinite;
+      animation: animateCloud 80s linear infinite;
+      -webkit-transform: scale(0.55);
+      transform: scale(0.55);
+    }
+  }
+}
+
+@-webkit-keyframes homecloud {
+  0% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+  50% {
+    -webkit-transform: translateX(1000px);
+    transform: translateX(1000px);
+  }
+  100% {
+    -webkit-transform: translateX(400px);
+    transform: translateX(400px);
+  }
+}
+@keyframes homecloud {
+  0% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+  50% {
+    -webkit-transform: translateX(1000px);
+    transform: translateX(1000px);
+  }
+  100% {
+    -webkit-transform: translateX(400px);
+    transform: translateX(400px);
+  }
+}
+
+@-webkit-keyframes animateCloud {
+  0% {
+    margin-left: -700px;
+  }
+  100% {
+    margin-left: 100%;
+  }
+}
+@keyframes animateCloud {
+  0% {
+    margin-left: -700px;
+  }
+  100% {
+    margin-left: 100%;
+  }
+}

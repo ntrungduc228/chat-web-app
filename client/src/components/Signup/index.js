@@ -19,56 +19,56 @@ const Content = styled.div`
   }
 `;
 
-// const rules = {
-//   email: [
-//     {
-//       type: "email",
-//       message: "The input is not valid E-mail!",
-//     },
-//     {
-//       required: true,
-//       message: "Please input your E-mail!",
-//     },
-//   ],
-//   gender: [
-//     {
-//       required: true,
-//       message: "Please select gender!",
-//     },
-//   ],
-//   password: [
-//     {
-//       required: true,
-//       message: "Please input your Password!",
-//     },
-//     {
-//       min: 6,
-//       message: "At less 6 characters!",
-//     },
-//     {
-//       max: 128,
-//       message: "Must be 128 characters or less!",
-//     },
-//   ],
-//   confirm_password: [
-//     {
-//       required: true,
-//       message: "Please confirm your Password!",
-//     },
-//     ({ getFieldValue }) => ({
-//       validator(_, value) {
-//         if (!value || getFieldValue("password") === value) {
-//           return Promise.resolve();
-//         }
-//         return Promise.reject(
-//           new Error("The two passwords that you entered do not match!")
-//         );
-//       },
-//     }),
-//   ],
-// };
+const rules = {
+  email: [
+    {
+      type: "email",
+      message: "The input is not valid E-mail!",
+    },
+    {
+      required: true,
+      message: "Please input your E-mail!",
+    },
+  ],
+  gender: [
+    {
+      required: true,
+      message: "Please select gender!",
+    },
+  ],
+  password: [
+    {
+      required: true,
+      message: "Please input your Password!",
+    },
+    {
+      min: 6,
+      message: "At less 6 characters!",
+    },
+    {
+      max: 128,
+      message: "Must be 128 characters or less!",
+    },
+  ],
+  confirm_password: [
+    {
+      required: true,
+      message: "Please confirm your Password!",
+    },
+    ({ getFieldValue }) => ({
+      validator(_, value) {
+        if (!value || getFieldValue("password") === value) {
+          return Promise.resolve();
+        }
+        return Promise.reject(
+          new Error("The two passwords that you entered do not match!")
+        );
+      },
+    }),
+  ],
+};
 
-const rules = { email: [], password: [], gender: [], confirm_password: [] };
+// const rules = { email: [], password: [], gender: [], confirm_password: [] };
 
 const SignUp = (props) => {
   const { signUpLoading, signUpMessage } = props;
