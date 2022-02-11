@@ -79,7 +79,7 @@ const SignUp = (props) => {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    // console.log("Failed:", errorInfo);
   };
   // const [gender, setGender] = React.useState("male");
 

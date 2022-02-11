@@ -8,6 +8,9 @@ const initialState = {
   verifyAccountFinish: false,
   verifyAccountSuccess: false,
   verifyAccountMessage: "",
+  signInLoading: false,
+  signInSuccess: false,
+  signInMessage: "",
 };
 
 const authReducer = (state = initialState, action) => {
@@ -16,6 +19,26 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case constants.SIGNIN_START:
+      return {
+        ...state,
+        signInLoading: true,
+        signInSuccess: false,
+      };
+    case constants.SIGNIN_SUCCESS:
+      return {
+        ...state,
+        signInLoading: false,
+        signInSuccess: true,
+        signInMessage: action.payload,
+      };
+    case constants.SIGNIN_ERROR:
+      return {
+        ...state,
+        signInLoading: false,
+        signInSuccess: false,
+        signInMessage: action.payload,
       };
     case constants.SIGNUP_START:
       return {

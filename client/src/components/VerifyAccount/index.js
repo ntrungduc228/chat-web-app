@@ -12,16 +12,20 @@ const VerifyAccount = (props) => {
   let navigate = useNavigate();
 
   const tokenVerify = searchParams.get("token");
+  const userEmail = searchParams.get("email");
 
   let { verifyAccountSuccess, verifyAccountFinish, verifyAccountMessage } =
     props;
 
   useEffect(() => {
-    if (typeof tokenVerify !== "string" && !(tokenVerify instanceof String)) {
+    if (
+      (typeof tokenVerify !== "string" && !(tokenVerify instanceof String)) ||
+      !userEmail
+    ) {
       navigate("/");
     } else {
       if (verifying) {
-        props.verifyAccountStart({ token: tokenVerify });
+        props.verifyAccountStart({ token: tokenVerify, email: userEmail });
       }
     }
   }, [verifying]);

@@ -24,12 +24,12 @@ let register = (data, protocol, host) => {
             success: false,
           });
         }
-        if (!userByEmail.local.isActive) {
-          return resolve({
-            message: transErrorsEn.account_not_active,
-            success: false,
-          });
-        }
+        // if (!userByEmail.local.isActive) {
+        //   return resolve({
+        //     message: transErrorsEn.account_not_active,
+        //     success: false,
+        //   });
+        // }
         return resolve({
           message: transErrorsEn.account_in_use,
           success: false,
@@ -50,7 +50,7 @@ let register = (data, protocol, host) => {
       // let linkVerifyAccount = `${protocol}://${host}/verify-account?token=${user.local.verifyToken}`;
       let REACT_APP_CLIENT_URL =
         process.env.REACT_APP_CLIENT_URL || "http://localhost:3000";
-      let linkVerifyAccount = `${REACT_APP_CLIENT_URL}/verify-account?token=${user.local.verifyToken}`;
+      let linkVerifyAccount = `${REACT_APP_CLIENT_URL}/verify-account?token=${user.local.verifyToken}&email=${user.local.email}`;
 
       emailService
         .sendMailVerifyAccount({
@@ -82,24 +82,25 @@ let login = (data) => {
     try {
       let user = await UserModel.findByEmail(data.email);
       if (!user) {
-        resolve({
+        return resolve({
           success: false,
-          message: transErrorsVi.account_login_incorrect,
+          message: transErrorsEn.account_login_incorrect,
         });
       }
 
       if (!user.local.isActive) {
-        resolve({
+        return resolve({
           success: false,
-          message: transErrorsVi.account_not_active,
+          message: transErrorsEn.account_not_active,
         });
       }
 
       let checkPassword = await user.comparePassword(data.password);
+
       if (!checkPassword) {
-        resolve({
+        return resolve({
           success: false,
-          message: transErrorsVi.account_login_incorrect,
+          message: transErrorsEn.account_login_incorrect,
         });
       }
 
@@ -123,7 +124,7 @@ let login = (data) => {
 
       resolve({
         success: true,
-        message: transSuccessVi.loginSuccess(user.username),
+        message: transSuccessEn.loginSuccess(user.username),
         token: { accessToken, refreshToken },
       });
     } catch (err) {
@@ -140,14 +141,27 @@ let login = (data) => {
 let verifyAccount = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let userByToken = await UserModel.findByToken(data.token);
+      if (!data.token) {
+        return resolve({
+          success: false,
+          message: transErrorsEn.token_undefined,
+        });
+      }
+      if (!data.email) {
+        return resolve({
+          success: false,
+          message: transErrorsEn.email_not_found,
+        });
+      }
+
+      let userByToken = await UserModel.findByToken(data.token, data.email);
       if (!userByToken) {
         return resolve({
           success: false,
           message: transErrorsEn.token_undefined,
         });
       }
-      await UserModel.verify(data.token);
+      await UserModel.verify(data.token, data.email);
 
       return resolve({
         message: transSuccessEn.account_actived,

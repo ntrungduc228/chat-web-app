@@ -50,17 +50,20 @@ UserSchema.statics = {
     return this.findByIdAndRemove(id).exec();
   },
 
-  findByToken(token) {
-    return this.findOne({ "local.verifyToken": token }).exec();
+  findByToken(token, email) {
+    return this.findOne({
+      "local.verifyToken": token,
+      "local.email": email,
+    }).exec();
   },
 
   findUserById(id) {
     return this.findById(id).exec();
   },
 
-  verify(token) {
+  verify(token, email) {
     return this.findOneAndUpdate(
-      { "local.verifyToken": token },
+      { "local.verifyToken": token, "local.email": email },
       { "local.isActive": true, "local.verifyToken": null }
     ).exec();
   },
