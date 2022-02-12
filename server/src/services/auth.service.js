@@ -124,6 +124,7 @@ let login = (data) => {
 
       resolve({
         success: true,
+        user: userData,
         message: transSuccessEn.loginSuccess(user.username),
         token: { accessToken, refreshToken },
       });
@@ -179,72 +180,83 @@ let verifyAccount = (data) => {
 };
 
 let verifyRFToken = async (refreshTokenFromClient) => {
-  try {
-    if (!refreshTokenFromClient) {
-      return {
-        checkRFToken: true,
-        success: false,
-        message: "Refresh token is missing!",
-      };
-    }
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!refreshTokenFromClient) {
+        return resolve({
+          checkRFToken: true,
+          success: false,
+          message: "Refresh token is missing!",
 
-    let refreshTokenFromServer = await RefreshTokenModel.findByToken(
-      refreshTokenFromClient
-    );
+          tokenVerified: false,
+        });
+      }
 
-    if (!refreshTokenFromServer) {
-      return {
-        checkRFToken: true,
-        success: false,
-        message: "Refresh token is not in database!",
-      };
-    }
-
-    refreshTokenFromServer = refreshTokenFromServer.toObject();
-
-    if (RefreshTokenModel.verifyExpiration(refreshTokenFromServer)) {
-      RefreshTokenModel.removeById(refreshTokenFromServer._id);
-      return {
-        checkRFToken: true,
-        success: false,
-        message: "Refresh token was expired. Please make a new signin request",
-      };
-    }
-
-    let user = await UserModel.findUserById(refreshTokenFromServer.userId);
-    let newAccessToken = "";
-
-    user = user ? user.toObject() : null;
-
-    if (user) {
-      let userData = {
-        _id: user._id,
-        userName: user.userName,
-        email: user.local.email,
-        avatar: user.avatar,
-      };
-
-      newAccessToken = await jwtHelper.generateToken(
-        userData,
-        accessTokenSecret,
-        accessTokenLife
+      let refreshTokenFromServer = await RefreshTokenModel.findByToken(
+        refreshTokenFromClient
       );
-    }
 
-    return {
-      success: true,
-      checkRFToken: true,
-      accessToken: newAccessToken,
-      refreshToken: refreshTokenFromClient,
-    };
-  } catch (err) {
-    console.log("error", err);
-    return res.status(500).json({
-      success: false,
-      message: transErrorsVi.server_error,
-      error: err,
-    });
-  }
+      if (!refreshTokenFromServer) {
+        return resolve({
+          checkRFToken: true,
+          success: false,
+          message: "Refresh token is not in database!",
+
+          tokenVerified: false,
+        });
+      }
+
+      refreshTokenFromServer = refreshTokenFromServer.toObject();
+
+      if (RefreshTokenModel.verifyExpiration(refreshTokenFromServer)) {
+        RefreshTokenModel.removeById(refreshTokenFromServer._id);
+
+        return resolve({
+          checkRFToken: true,
+          success: false,
+          message:
+            "Refresh token was expired. Please make a new signin request",
+
+          tokenVerified: false,
+        });
+      }
+
+      let user = await UserModel.findUserById(refreshTokenFromServer.userId);
+      let newAccessToken = "";
+
+      user = user ? user.toObject() : null;
+
+      if (user) {
+        let userData = {
+          _id: user._id,
+          userName: user.userName,
+          email: user.local.email,
+          avatar: user.avatar,
+        };
+
+        newAccessToken = await jwtHelper.generateToken(
+          userData,
+          accessTokenSecret,
+          accessTokenLife
+        );
+      }
+
+      resolve({
+        success: true,
+        checkRFToken: true,
+        accessToken: newAccessToken,
+        refreshToken: refreshTokenFromClient,
+
+        tokenVerified: true,
+      });
+    } catch (err) {
+      console.log("error", err);
+      reject({
+        success: false,
+        message: transErrorsEn.server_error,
+      });
+    }
+  });
 };
 
 let sendPasswordResetLink = async (user, protocol, host) => {
@@ -279,7 +291,10 @@ let resetPassword = (data) => {
     try {
       let { resetToken, email } = data;
       if (!resetToken) {
-        return resolve({ success: false, message: "Missing token reset" });
+        return resolve({
+          success: false,
+          message: "Missing token reset",
+        });
       }
 
       const resetTokenObject = await PasswordResetTokenModel.findOneAndRemove({
@@ -296,7 +311,10 @@ let resetPassword = (data) => {
       }
 
       if (moment().isAfter(resetTokenObject.expires)) {
-        return resolve({ success: false, message: "Reset token is expired" });
+        return resolve({
+          success: false,
+          message: "Reset token is expired",
+        });
       }
 
       let user = await UserModel.findByEmail(resetTokenObject.userEmail);

@@ -40,7 +40,7 @@ const transSuccessEn = {
   },
   account_actived: "Account actived successfully!",
   loginSuccess: (username) => {
-    return `Xin chào ${username}, chúc bạn một ngày tốt lành.`;
+    return ` Welcome ${username}. Have a nice day!`;
   },
   send_reset_password_success:
     "Gửi mail reset mật khẩu thành công, vui lòng kiểm tra mail",

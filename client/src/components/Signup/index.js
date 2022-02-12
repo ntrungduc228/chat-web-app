@@ -218,7 +218,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    showLoading: () => dispatch(actions.showLoading()),
+    // showLoading: () => dispatch(actions.showLoading()),
     signUpStart: (data) => dispatch(actions.signUpStart(data)),
   };
 };

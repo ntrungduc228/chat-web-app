@@ -6,6 +6,7 @@ import {
 } from "../../services/auth";
 import { selectErrorMessage } from "../../utils/error";
 import Toast from "../../components/Toast";
+import LocalService from "../../services/local";
 
 export const showLoading = () => ({
   type: constants.SHOW_LOADING,
@@ -36,14 +37,13 @@ export const signUpStart = (data) => {
       }
     } catch (err) {
       console.log("err", err);
-      let errorMessages = selectErrorMessage(err);
       Toast({
-        messages: errorMessages,
+        messages: "Server Error. Please contact our administrator!",
         type: "error",
         position: "bottom-center",
       });
 
-      dispatch(signUpError(errorMessages));
+      dispatch(signUpError("Server Error!"));
     }
   };
 };
@@ -105,16 +105,27 @@ export const signInStart = (data) => {
   return async (dispatch) => {
     try {
       dispatch({ type: constants.SIGNIN_START });
-      console.log("response", data, process.env.REACT_APP_API_URI);
 
       let response = await signInAccount(data);
       console.log("response", response);
       if (response && response.data && response.data.success) {
+        if (response.data.token) {
+          if (response.data.token.accessToken) {
+            LocalService.setAccessToken(response.data.token.accessToken);
+          }
+
+          if (response.data.token.refreshToken) {
+            LocalService.setRefreshToken(response.data.token.refreshToken);
+          }
+
+          if (response.data.user) {
+            LocalService.setUserData(response.data.user);
+          }
+        }
+
         Toast({
           messages: response.data.message,
           type: "success",
-
-          position: "bottom-center",
         });
         dispatch(signInSuccess(response.data.message));
       } else {
@@ -129,15 +140,15 @@ export const signInStart = (data) => {
         dispatch(signInError(errorMessages));
       }
     } catch (err) {
-      console.log("err", err);
+      console.log("err signIn ", err);
+
       Toast({
         messages: "Server Error. Please contact our administrator!",
         type: "error",
 
         position: "bottom-center",
       });
-
-      dispatch(verifyAccountError("Server Error!"));
+      dispatch(signInError("Server Error. Please contact our administrator!"));
     }
   };
 };

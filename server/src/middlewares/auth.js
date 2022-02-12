@@ -12,6 +12,8 @@ let checkLoggedIn = async (req, res, next) => {
         success: false,
         message:
           "Please provide authorization credentials for accessing this endpoint.",
+
+        tokenVerified: false,
       });
     }
 
@@ -29,7 +31,7 @@ let checkLoggedIn = async (req, res, next) => {
         decoded,
       });
     } else {
-      return res.status(403).json(decoded);
+      return res.status(200).json(decoded);
     }
 
     // return res.json({ decoded });
@@ -39,6 +41,8 @@ let checkLoggedIn = async (req, res, next) => {
       err: err,
       message:
         "Please provide authorization credentials for accessing this endpoint.",
+
+      tokenVerified: false,
     });
   }
 };

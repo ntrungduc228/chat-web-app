@@ -35,7 +35,7 @@ RefreshTokenSchema.statics = {
     });
 
     await tokenObject.save();
-    return tokenObject;
+    return tokenObject.token;
   },
 
   verifyExpiration(token) {
