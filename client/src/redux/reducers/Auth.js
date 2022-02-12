@@ -9,7 +9,7 @@ const initialState = {
   verifyAccountSuccess: false,
   verifyAccountMessage: "",
   signInLoading: false,
-  signInSuccess: false,
+  isSignIn: false,
   signInMessage: "",
 };
 
@@ -24,20 +24,20 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         signInLoading: true,
-        signInSuccess: false,
+        isSignIn: false,
       };
     case constants.SIGNIN_SUCCESS:
       return {
         ...state,
         signInLoading: false,
-        signInSuccess: true,
-        signInMessage: action.payload,
+        isSignIn: true,
       };
     case constants.SIGNIN_ERROR:
+      console.log("err reduder", action.payload);
       return {
         ...state,
         signInLoading: false,
-        signInSuccess: false,
+        isSignIn: false,
         signInMessage: action.payload,
       };
     case constants.SIGNUP_START:
@@ -51,6 +51,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         signUpLoading: false,
         signUpSuccess: true,
+        signUpMessage: action.payload,
       };
     case constants.SIGNUP_ERROR:
       return {

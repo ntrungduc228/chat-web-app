@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form, Input, Button, Space, Row, Image } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import "./Signin.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions/Auth";
+import { isAuthenticated } from "../Routes/permissionChecker";
 
 const Content = styled.div`
   z-index: 2;
@@ -39,12 +40,22 @@ const rules = {
 };
 
 const SignIn = (props) => {
-  const { signInLoading, signInMessage, signInSuccess } = props;
+  let navigate = useNavigate();
+
+  const { signInLoading, isSignIn } = props;
 
   const onFinish = (values) => {
     props.signInStart(values);
-    console.log("Received values of form: ", values);
+    // console.log("Received values of form: ", values);
   };
+
+  useEffect(() => {
+    // console.log("sigin in", isSignIn);
+    if (isSignIn && isAuthenticated()) {
+      navigate("/");
+    }
+  }, [isSignIn]);
+
   return (
     <Row
       type="flex"
@@ -131,8 +142,8 @@ const SignIn = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  const { signInLoading, signInMessage, signInSuccess } = state.auth;
-  return { signInLoading, signInMessage, signInSuccess };
+  const { signInLoading, signInMessage, isSignIn } = state.auth;
+  return { signInLoading, signInMessage, isSignIn };
 };
 
 const mapDispatchToProps = (dispatch) => {
