@@ -7,13 +7,16 @@ const SignUpPage = lazy(() => import("./views/AuthPage/SignupPage"));
 const VerifyAccountPage = lazy(() => import("./views/VerifyAccountPage"));
 
 // Chat page
-const ChatPage = lazy(() => import("./components/ChatPage"));
+const ChatPage = lazy(() => import("./views/ChatPage"));
+
+// Error page
+const Page404 = lazy(() => import("./views/ErrorPage/Page404"));
 
 const privateRoutes = [
   {
     path: "/",
     exact: true,
-    loader: () => import("./components/ChatPage"),
+    loader: () => import("./views/ChatPage"),
     menu: false,
     label: "Trang chủ",
     permissionRequired: null,
@@ -43,7 +46,17 @@ const authRoutes = [
   },
 ];
 
+const errorRoutes = [
+  {
+    path: "*",
+    exact: true,
+    loader: () => import("./views/ErrorPage/Page404"),
+    element: <Page404 />,
+  },
+];
+
 export default {
   privateRoutes,
   authRoutes,
+  errorRoutes,
 };

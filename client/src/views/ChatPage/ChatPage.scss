@@ -1,0 +1,26 @@
+.text-username {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #223645;
+  margin: 0;
+}
+
+.icon-btn {
+  height: 42px;
+  width: 42px;
+  border-radius: 100%;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0 !important;
+}
+
+.btn-outline-primary {
+  background-color: rgba(28, 157, 234, 0.15) !important;
+  color: #1c9dea !important;
+  border: none !important;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}

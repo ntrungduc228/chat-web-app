@@ -1,0 +1,111 @@
+.chat-footer-container {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 26px 45px;
+  height: 95px;
+  transition: all 0.5s;
+  z-index: 9;
+  box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.02), 0 1px 0 rgba(0, 0, 0, 0.02);
+
+  @mixin btn-input-send {
+    border: none;
+    svg {
+      height: 20px;
+      width: 20px;
+      stroke-width: 2px;
+      vertical-align: middle;
+    }
+
+    &:hover {
+      background-color: #c6e6fa !important;
+    }
+  }
+
+  .btn-upload {
+    @include btn-input-send;
+    // border: none;
+    // svg {
+    //   height: 20px;
+    //   width: 20px;
+    //   //   fill: #1c9dea;
+    //   stroke-width: 2px;
+    //   vertical-align: middle;
+    // }
+
+    // &:hover {
+    //   background-color: #c6e6fa !important;
+    // }
+  }
+
+  .btn-emoji {
+    @include btn-input-send;
+    width: 55px;
+
+    // border: none;
+    // svg {
+    //   height: 20px;
+    //   width: 20px;
+    //   //   fill: #1c9dea;
+    //   stroke-width: 2px;
+    //   vertical-align: middle;
+    // }
+
+    // &:hover {
+    //   background-color: #c6e6fa !important;
+    // }
+  }
+
+  .dot-btn {
+    position: relative;
+    display: inline-block;
+
+    &.dot-primary {
+      &:before {
+        background-color: #1c9dea !important;
+      }
+    }
+    &:before {
+      content: "";
+      height: 9px;
+      width: 9px;
+      position: absolute;
+      bottom: 10px;
+      left: 22px;
+      border-radius: 100%;
+      z-index: 1;
+      border: 1px solid #fff;
+    }
+  }
+
+  .input-message {
+    outline: 0;
+    border: 0;
+    font-size: 16px;
+    color: #647589;
+    font-family: "Montserrat", sans-serif;
+
+    &::placeholder {
+      color: #647589;
+    }
+  }
+
+  .btn-send-message {
+    background-color: #8ecef5 !important;
+    border-color: #1c9dea !important;
+    padding: 1px 6px;
+    width: 50px;
+
+    &:hover {
+      background-color: #89c0e0 !important;
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 3px;
+      vertical-align: middle;
+      color: #fff;
+    }
+  }
+}

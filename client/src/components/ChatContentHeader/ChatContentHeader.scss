@@ -1,0 +1,33 @@
+.text-username {
+  font-family: "Montserrat", sans-serif;
+  font-size: calc(13px + (14 - 13) * ((100vw - 320px) / (1920 - 320)));
+  font-weight: 700;
+  color: #223645;
+  margin: 0;
+}
+
+.btn-chat-header {
+  border: none;
+  background-color: #eff1f2 !important;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 42px;
+  width: 42px;
+
+  &:hover {
+    background-color: #d3d8db !important;
+    border-color: #d3d8db !important;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    outline: none !important;
+  }
+
+  svg {
+    color: #223645;
+    width: 16px;
+    height: 16px;
+  }
+}

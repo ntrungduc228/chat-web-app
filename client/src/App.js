@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadPosts } from "./redux/actions/postAction";
@@ -8,15 +8,15 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const data = useSelector((state) => state.posts.data2);
-  const requesting = useSelector((state) => state.posts.requesting);
+  // const data = useSelector((state) => state.posts.data2);
+  // const requesting = useSelector((state) => state.posts.requesting);
 
-  console.log("check data", data, requesting);
+  // console.log("check data", data, requesting);
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(loadPosts());
-  }, [dispatch]);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(loadPosts());
+  // }, [dispatch]);
   return (
     <div className="App">
       <RoutesComponent />
