@@ -201,7 +201,7 @@ const SignUp = (props) => {
               </Button>
             </Space>
           </Form.Item>
-          <Form.Item style={{ marginBottom: "0px" }}>
+          <Form.Item style={{ marginBottom: "0px", textAlign: "center" }}>
             Already have an account?<Link to="/signin"> Sign In now!</Link>
           </Form.Item>
         </Form>

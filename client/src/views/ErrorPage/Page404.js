@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Spinner from "../Spinner";
 import { Row, Col } from "antd";
 import "./ErrorPage.scss";
 
@@ -48,6 +47,31 @@ const Page404 = () => {
             <div className="right-circle"></div>
             <div className="top-circle"></div>
             <div className="center-circle"></div>
+            <img
+              src={`${require("../../assets/backgrounds/cloud-logo.png")}`}
+              className="cloud-logo"
+              alt="cloud-logo"
+            />
+            <img
+              src={`${require("../../assets/backgrounds/cloud-logo.png")}`}
+              className="cloud-logo1"
+              alt="cloud-logo1"
+            />
+            <img
+              src={`${require("../../assets/backgrounds/cloud-logo.png")}`}
+              className="cloud-logo2"
+              alt="cloud-logo2"
+            />
+            <img
+              src={`${require("../../assets/backgrounds/cloud-logo.png")}`}
+              className="cloud-logo3"
+              alt="cloud-logo3"
+            />
+            <img
+              src={`${require("../../assets/backgrounds/cloud-logo.png")}`}
+              className="cloud-logo4"
+              alt="cloud-logo4"
+            />
             <div
               className="main-circle"
               style={{

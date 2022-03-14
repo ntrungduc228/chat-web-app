@@ -1,0 +1,22 @@
+.list-avatars {
+  width: 100%;
+  padding: 0rem 1.5rem;
+  margin-top: 10px;
+
+  .list-avatars-child {
+    width: 90px !important;
+    background: #fff;
+
+    .list-avatars-username {
+      display: inline-block;
+      white-space: nowrap;
+      width: 52px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 600;
+      // color: #495057;
+      color: #223645;
+    }
+  }
+}

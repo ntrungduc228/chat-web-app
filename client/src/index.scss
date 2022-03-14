@@ -57,3 +57,37 @@ h4 {
   color: #647589;
   margin: 0;
 }
+
+h5 {
+  font-family: "Montserrat", sans-serif;
+  font-size: calc(13px + (14 - 13) * ((100vw - 320px) / (1920 - 320)));
+  font-weight: 700;
+  color: #223645;
+  margin: 0;
+}
+
+h6 {
+  font-family: "Roboto", sans-serif;
+  font-size: calc(11px + (12 - 11) * ((100vw - 320px) / (1920 - 320)));
+  font-weight: 400;
+  color: #647589;
+  margin: 0;
+}
+
+.hideOnMobile {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+  .hideOnMobile {
+    display: block;
+  }
+}
+
+.hideOnDesktop {
+  display: block;
+}
+@media only screen and (min-width: 768px) {
+  .hideOnDesktop {
+    display: none;
+  }
+}

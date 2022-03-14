@@ -1,0 +1,13 @@
+.ant-avatar-group .ant-avatar:not(:first-child) {
+  margin-left: -20px;
+}
+
+.list-item {
+  cursor: pointer;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  &:hover {
+    background-color: #e6f7ff;
+  }
+}

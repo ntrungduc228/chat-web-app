@@ -1,0 +1,61 @@
+.user-info {
+  display: flex;
+  gap: 6px;
+}
+
+.input-search {
+  background-color: #e6ebf5 !important;
+  border-radius: 0.25rem;
+  padding: 10px 12px;
+
+  .search-icon {
+    svg {
+      fill: "#search-icon";
+    }
+  }
+}
+
+.ant-input-affix-wrapper > input.ant-input {
+  background-color: #e6ebf5;
+}
+
+.message-menu {
+  .message-menu-chat-btn {
+    background-color: rgba(28, 157, 234, 0.15) !important;
+    color: #1c9dea !important;
+    font-size: calc(14px + (15 - 14) * ((100vw - 320px) / (1920 - 320)));
+    font-weight: 700;
+    padding: 18px 30px;
+    min-height: 30px;
+    border-radius: 10px;
+    min-width: 140px;
+    background-color: #eff1f2 !important;
+    border: none !important;
+    color: #223645 !important;
+    text-align: center;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      margin-right: 6px;
+    }
+  }
+
+  .ant-tabs-tab {
+    padding: 20px 0 !important;
+
+    &.ant-tabs-tab-active {
+    }
+  }
+
+  .message-menu-btn-active {
+    background-color: rgba(28, 157, 234, 0.15) !important;
+    color: #1c9dea !important;
+    transition: all 0.3s ease;
+  }
+}

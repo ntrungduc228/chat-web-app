@@ -32,6 +32,15 @@ const RoutesComponent = () => {
               element={<AuthRoutes>{route.element}</AuthRoutes>}
             />
           ))}
+
+          {routes.errorRoutes.map((route) => (
+            <Route
+              key={route.path}
+              exact={!!route.exact}
+              path={route.path}
+              element={route.element}
+            />
+          ))}
         </Routes>
       </Suspense>
     </Router>

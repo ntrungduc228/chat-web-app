@@ -1,7 +1,7 @@
 .page404-container {
   text-align: center;
-  padding-top: calc(50px + (200 - 50) * ((100vw - 320px) / (1920 - 320)));
-  padding-bottom: calc(50px + (200 - 50) * ((100vw - 320px) / (1920 - 320)));
+  // padding-top: calc(50px + (200 - 50) * ((100vw - 320px) / (1920 - 320)));
+  // padding-bottom: calc(50px + (200 - 50) * ((100vw - 320px) / (1920 - 320)));
   width: 100%;
   position: fixed;
 
@@ -86,5 +86,53 @@
         animation: ripple3 2s linear infinite;
       }
     }
+  }
+}
+
+.animation-block {
+  .cloud-logo {
+    position: absolute;
+    // top:15%;
+    bottom: 40%;
+    left: 0;
+    -webkit-animation: homecloud 90s linear infinite;
+    animation: homecloud 90s linear infinite;
+    -webkit-transform: scale(0.15);
+    transform: scale(0.15);
+  }
+
+  .cloud-logo1 {
+    position: absolute;
+    bottom: 10%;
+    -webkit-animation: animateCloud 25s linear infinite;
+    animation: animateCloud 25s linear infinite;
+    height: 25px;
+  }
+
+  .cloud-logo2 {
+    position: absolute;
+    top: 2%;
+    -webkit-animation: homecloud 60s linear infinite;
+    animation: homecloud 60s linear infinite;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+
+  .cloud-logo3 {
+    position: absolute;
+    top: 31%;
+    -webkit-animation: animateCloud 45s linear infinite;
+    animation: animateCloud 45s linear infinite;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    height: 30px;
+  }
+
+  .cloud-logo4 {
+    position: absolute;
+    -webkit-animation: animateCloud 80s linear infinite;
+    animation: animateCloud 80s linear infinite;
+    -webkit-transform: scale(0.55);
+    transform: scale(0.55);
   }
 }
