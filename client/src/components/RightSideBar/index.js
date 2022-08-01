@@ -8,7 +8,8 @@ import {
   Row,
   Col,
   Image,
-  Modal, Space
+  Modal,
+  Space,
 } from "antd";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions/Layout";
@@ -18,13 +19,15 @@ import {
   CaretDownOutlined,
   LogoutOutlined,
   DeleteOutlined,
-  FileOutlined,ExclamationCircleOutlined 
+  FileOutlined,
+  ExclamationCircleOutlined,
 } from "@ant-design/icons";
 import ListUser from "./ListUser";
 import FileList from "./FileList";
 import ImageGrid from "./ImageGrid";
 
 import VirtualList from "rc-virtual-list";
+
 const fakeDataUrl =
   "https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo";
 
@@ -34,17 +37,17 @@ const { confirm } = Modal;
 
 const showConfirm = () => {
   confirm({
-    title: 'Do you Want to delete these items?',
+    title: "Do you Want to delete these items?",
     icon: <ExclamationCircleOutlined />,
-    content: 'Some descriptions',
+    content: "Some descriptions",
     onOk() {
-      console.log('OK');
+      console.log("OK");
     },
     onCancel() {
-      console.log('Cancel');
+      console.log("Cancel");
     },
   });
-}
+};
 
 const UserInfo = () => {
   return (
@@ -200,7 +203,12 @@ const ContentSideBar = () => {
         <Button block icon={<LogoutOutlined />} style={{ border: "none" }}>
           Add new member
         </Button>
-        <Button block icon={<LogoutOutlined />} style={{ border: "none" }} onClick={() =>  showConfirm()}>
+        <Button
+          block
+          icon={<LogoutOutlined />}
+          style={{ border: "none" }}
+          onClick={() => showConfirm()}
+        >
           Unfriend
         </Button>
       </Panel>
@@ -313,51 +321,40 @@ const RightSideBar = (props) => {
           borderLeft: "1px solid rgba(0, 0, 0, 0.05)",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flex: "1",
-            flexDirection: "column",
-            backgroundColor: "#fff",
-            height: "100%",
-            borderLeft: "1px solid rgba(0, 0, 0, 0.05)",
-          }}
-        >
-          {!isMobileDevice && (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "end",
-                padding: "1.6rem 2rem",
-              }}
+        {!isMobileDevice && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "end",
+              padding: "1.6rem 2rem",
+            }}
+          >
+            <Button
+              shape="circle"
+              className="icon-btn btn-outline-light btn-sm"
+              onClick={() => props.doHideRightSidebar()}
             >
-              <Button
-                shape="circle"
-                className="icon-btn btn-outline-light btn-sm"
-                onClick={() => props.doHideRightSidebar()}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-x"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="feather feather-x"
-                >
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </Button>
-            </div>
-          )}
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </Button>
+          </div>
+        )}
 
-          <UserInfo />
-          <ContentSideBar />
-        </div>
+        <UserInfo />
+        <ContentSideBar />
       </div>
     </Sider>
   );

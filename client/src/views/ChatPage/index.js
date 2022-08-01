@@ -9,7 +9,7 @@ import * as actions from "../../redux/actions/Layout";
 import "./ChatPage.scss";
 
 const ChatPage = (props) => {
-  console.log('is sign in', props)
+  console.log("is sign in", props);
   const windowOnResize = () => {
     props.doWindowResize(window.innerWidth);
   };
@@ -31,8 +31,13 @@ const ChatPage = (props) => {
 
 const mapStateToProps = (state) => {
   const { isMobileDevice, rightSidebarVisible } = state.layout;
-  const {isSignIn,verifyAccountSuccess} = state.auth;
-  return { isMobileDevice, rightSidebarVisible,isSignIn,verifyAccountSuccess };
+  const { isSignIn, verifyAccountSuccess } = state.auth;
+  return {
+    isMobileDevice,
+    rightSidebarVisible,
+    isSignIn,
+    verifyAccountSuccess,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

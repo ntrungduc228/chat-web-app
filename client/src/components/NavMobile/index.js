@@ -10,6 +10,7 @@ const NavMobile = (props) => {
       onClose={props.onClose}
       visible={props.visible}
       width={100}
+      // mask={false}
       extra={
         <Space>
           <Button onClick={props.onClose}>Cancel</Button>
