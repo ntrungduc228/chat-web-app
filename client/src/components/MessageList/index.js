@@ -57,7 +57,7 @@ const MessageList = (props) => {
                   >
                     <Avatar src={item.picture.large} />
                     <Avatar src={item.picture.large} />
-                    <Avatar src="https://joeschmoe.io/api/v1/random" />
+                    <Avatar src={"https://joeschmoe.io/api/v1/random"} />
                     <Avatar
                       shape="square"
                       style={{
